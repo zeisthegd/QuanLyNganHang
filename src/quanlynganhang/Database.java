@@ -5,6 +5,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 public class Database {
 	static Connection conn = null;
@@ -47,5 +49,11 @@ public class Database {
 	}
 	public static Connection getConnection() {
 		return conn;
+	}
+	public static String getCurrentDateTime()
+	{
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
+		LocalDateTime now = LocalDateTime.now();
+		return dtf.format(now);
 	}
 }

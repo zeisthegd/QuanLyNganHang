@@ -1,14 +1,16 @@
 package model;
 
+import java.math.BigDecimal;
+
 public class KhachHang {
 	private int id;
 	private String tenKhachHang;
 	private String cmnd;
 	private String diaChi;
 	private String sdt;
-	private int tien;
+	private BigDecimal tien;
 		
-	public KhachHang(int id, String tenKhachHang, String cmnd, String diaChi, String sdt, int tien) {
+	public KhachHang(int id, String tenKhachHang, String cmnd, String diaChi, String sdt, BigDecimal tien) {
 		super();
 		this.id = id;
 		this.tenKhachHang = tenKhachHang;
@@ -18,6 +20,16 @@ public class KhachHang {
 		this.tien = tien;
 	}
 	
+	
+	
+	@Override
+	public String toString() {
+		return "KhachHang [id=" + id + ", tenKhachHang=" + tenKhachHang + ", cmnd=" + cmnd + ", diaChi=" + diaChi
+				+ ", sdt=" + sdt + ", tien=" + String.valueOf(tien) + "]";
+	}
+
+
+
 	public int getId() {
 		return id;
 	}
@@ -48,10 +60,10 @@ public class KhachHang {
 	public void setSdt(String sdt) {
 		this.sdt = sdt;
 	}
-	public int getTien() {
+	public BigDecimal getTien() {
 		return tien;
 	}
-	public void setTien(int tien) {
+	public void setTien(BigDecimal tien) {
 		this.tien = tien;
 	}
 	

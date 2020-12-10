@@ -57,7 +57,7 @@ public class DangNhap {
 	 */
 	private void initialize() {
 		frmLogin = new JFrame();
-		frmLogin.setTitle("Login");
+		frmLogin.setTitle("\u0110\u0103ng Nh\u1EADp Nh\u00E2n Vi\u00EAn");
 		frmLogin.setBounds(100, 100, 312, 192);
 		frmLogin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmLogin.getContentPane().setLayout(null);
@@ -84,7 +84,7 @@ public class DangNhap {
 		btnLogin.setBounds(100, 113, 89, 23);
 		frmLogin.getContentPane().add(btnLogin);
 		
-		JLabel lblTitle = new JLabel("Quan Li Ngan Hang");
+		JLabel lblTitle = new JLabel("Qu\u1EA3n L\u00ED Ng\u00E2n H\u00E0ng");
 		lblTitle.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblTitle.setBounds(68, 11, 183, 32);
 		frmLogin.getContentPane().add(lblTitle);
@@ -124,6 +124,7 @@ public class DangNhap {
 			pstmt.setString(2, password);
 			ResultSet result = pstmt.executeQuery();
 			
+			
 			if(!result.next())
 			{
 				JOptionPane.showMessageDialog(frmLogin, "Wrong password");
@@ -145,21 +146,5 @@ public class DangNhap {
 		frmLogin.dispose();
 		frameTrangChu.getFrame().setVisible(true);
 		
-	}
-	
-	private void connectDatabase()
-	{	
-		try {
-			String dbURL = "jdbc:sqlserver://cache\\sqlexpress;databaseName=ThuVien";
-			String username = "sa";
-			String password = "6644889";
-			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-			conn = DriverManager.getConnection(dbURL,username,password);
-			if (conn != null) {
-				System.out.println("Connected");
-			}
-		} catch (Exception ex) {
-			System.out.println(ex.getMessage());
-		}
 	}
 }
