@@ -51,6 +51,8 @@ public class TrangChu {
 	private JButton btnThemKhachHang;
 	private JButton btnRefresh;
 	private JButton btnThoat;
+	
+	private static String tenNhanVien = "";
 
 	private DefaultTableModel dataModel = new DefaultTableModel();
 
@@ -277,7 +279,16 @@ public class TrangChu {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
+				if(selectedKhachHang != null)
+				{
+					RutTien windowRutTien = new RutTien();
+					windowRutTien.setThongTinKhachHang(selectedKhachHang);
+					windowRutTien.getFrame().setVisible(true);
+				}
+				else
+				{
+					JOptionPane.showMessageDialog(frmTrangChu, "Bạn chưa chọn khách hàng cần thực hiện thao tác!");
+				}
 
 			}
 		});
@@ -437,12 +448,13 @@ public class TrangChu {
 	}
 
 	public void setTenNhanVien(String ten) {
-		lblTenNhanVien.setText(ten);
+		tenNhanVien = ten;
+		lblTenNhanVien.setText(tenNhanVien);
 	}
 	
-	public String getTenNhanVien()
+	public static String getTenNhanVien()
 	{
-		return lblTenNhanVien.getText().toString();
+		return tenNhanVien;
 	}
 
 }

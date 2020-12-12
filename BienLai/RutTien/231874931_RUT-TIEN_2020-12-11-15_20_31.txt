@@ -1,0 +1,5 @@
+----- RÚT TIỀN -----
+Tên nhân viên thực hiện: Nguyen Nhan Vien
+Tên khách hàng: Trần Văn A
+Số tiền rút: 123,000
+Ngày giao dịch: Trần Văn A

@@ -52,7 +52,7 @@ public class Database {
 	}
 	public static String getCurrentDateTime()
 	{
-		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd-HH_mm_ss");  
 		LocalDateTime now = LocalDateTime.now();
 		return dtf.format(now);
 	}

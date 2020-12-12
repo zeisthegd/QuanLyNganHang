@@ -123,8 +123,7 @@ public class DangNhap {
 			pstmt.setString(1, username);
 			pstmt.setString(2, password);
 			ResultSet result = pstmt.executeQuery();
-			
-			
+						
 			if(!result.next())
 			{
 				JOptionPane.showMessageDialog(frmLogin, "Wrong password");
@@ -139,12 +138,10 @@ public class DangNhap {
 		
 	}
 
-	private void changeToMain(String tenNhanVien) {
-		
+	private void changeToMain(String tenNhanVien) {	
 		TrangChu frameTrangChu = new TrangChu();
 		frameTrangChu.setTenNhanVien(tenNhanVien);
 		frmLogin.dispose();
-		frameTrangChu.getFrame().setVisible(true);
-		
+		frameTrangChu.getFrame().setVisible(true);	
 	}
 }

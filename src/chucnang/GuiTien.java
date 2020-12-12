@@ -11,11 +11,13 @@ import javax.swing.SwingConstants;
 
 import model.KhachHang;
 import quanlynganhang.Database;
+import quanlynganhang.TrangChu;
 
 import javax.swing.JTextField;
 import javax.swing.JFormattedTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -139,11 +141,11 @@ public class GuiTien {
 			String tienGui = ftxtSoTien.getText().toString().replace(",", "");
 
 			BigDecimal inputAmount = new BigDecimal(tienGui);
-			if (inputAmount.intValue() < maxAmount) {
-				if (inputAmount.intValue() > minAmount) {
+			if (inputAmount.intValue() <= maxAmount) {
+				if (inputAmount.intValue() >= minAmount) {
 					guiTien(inputAmount);
 					inBienLai();
-					
+
 				} else {
 					JOptionPane.showMessageDialog(frmGuiTien, "Số tiền gửi phải lớn hơn " + minAmount);
 				}
@@ -161,7 +163,7 @@ public class GuiTien {
 		try (PreparedStatement pstmt = Database.getConnection().prepareStatement(query)) {
 			pstmt.setString(1, kh.getTien().toString());
 			pstmt.setString(2, kh.getCmnd().toString());
-			
+
 			pstmt.executeUpdate();
 			JOptionPane.showMessageDialog(frmGuiTien, "Đã thực hiện gửi tiền!");
 		} catch (Exception ex) {
@@ -169,23 +171,28 @@ public class GuiTien {
 		}
 
 	}
-	
+
 	private void inBienLai() {
 		try {
-			String tenBienLai = kh.getTenKhachHang() + '_' + kh.getCmnd() + '_' + "GUI-TIEN" + Database.getCurrentDateTime() + ".txt";
-		      FileWriter myWriter = new FileWriter(tenBienLai);
-		      myWriter.write("----- GỬI TIỀN -----");
-		      myWriter.write("Tên nhân viên thực hiện: ");
-		      myWriter.write("Tên khách hàng: " + kh.getTenKhachHang());
-		      myWriter.write("\nSố tiền gửi: " + ftxtSoTien.getText().toString());
-		      myWriter.write("Ngày giao dịch: " + kh.getTenKhachHang());
-		      myWriter.close();
-		      JOptionPane.showMessageDialog(frmGuiTien,"Đã in biên lai!");
-		    } catch (IOException e) {
-		    	JOptionPane.showMessageDialog(frmGuiTien,"Đã xảy ra lỗi!");
-		      e.printStackTrace();
-		    }
-		
+			String saveDirectory = System.getProperty("user.dir") + "\\BienLai\\GuiTien";
+			String tenBienLai = kh.getCmnd() + "_GUI-TIEN_" + Database.getCurrentDateTime() + ".txt";
+
+			File bienLai = new File(saveDirectory, tenBienLai);
+			bienLai.getParentFile().mkdirs();
+			FileWriter myWriter = new FileWriter(bienLai);
+
+			myWriter.write("----- GỬI TIỀN -----");
+			myWriter.write("\nTên nhân viên thực hiện: " + TrangChu.getTenNhanVien());
+			myWriter.write("\nTên khách hàng: " + kh.getTenKhachHang());
+			myWriter.write("\nSố tiền gửi: " + ftxtSoTien.getText().toString());
+			myWriter.write("\nNgày giao dịch: " + kh.getTenKhachHang());
+			myWriter.close();
+			JOptionPane.showMessageDialog(frmGuiTien, "Đã in biên lai!");
+		} catch (IOException e) {
+			JOptionPane.showMessageDialog(frmGuiTien, "Đã xảy ra lỗi!");
+			e.printStackTrace();
+		}
+
 	}
 
 	public JFrame getFrame() {

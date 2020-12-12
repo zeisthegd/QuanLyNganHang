@@ -27,9 +27,10 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.awt.event.ActionEvent;
 
-public class RutTien {
+public class ThemKhachHang {
 
-	private JFrame frmRutTien;
+	private JFrame frmThemKhachHang;
+	
 	private JTextField txtTenKhachHang;
 	private JTextField txtSoCMND;
 	private JTextField txtSDT;
@@ -40,7 +41,7 @@ public class RutTien {
 	private int minAmount = 100000;
 	private int remainingAmount = 50000;
 
-	private JButton btnRut;
+	private JButton btnThem;
 
 	/**
 	 * Launch the application.
@@ -49,8 +50,8 @@ public class RutTien {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					RutTien window = new RutTien();
-					window.frmRutTien.setVisible(true);
+					ThemKhachHang window = new ThemKhachHang();
+					window.frmThemKhachHang.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -61,7 +62,7 @@ public class RutTien {
 	/**
 	 * Create the application.
 	 */
-	public RutTien() {
+	public ThemKhachHang() {
 		initialize();
 	}
 
@@ -69,65 +70,65 @@ public class RutTien {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frmRutTien = new JFrame();
-		frmRutTien.setTitle("Rút tiền");
-		frmRutTien.setBounds(100, 100, 310, 213);
-		frmRutTien.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		frmRutTien.getContentPane().setLayout(null);
+		frmThemKhachHang = new JFrame();
+		frmThemKhachHang.setTitle("Thêm Khách Hàng");
+		frmThemKhachHang.setBounds(100, 100, 310, 213);
+		frmThemKhachHang.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		frmThemKhachHang.getContentPane().setLayout(null);
 
-		JLabel lblNewLabel = new JLabel("Rút Tiền");
+		JLabel lblNewLabel = new JLabel("Thêm Khách Hàng");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblNewLabel.setBounds(98, 11, 100, 14);
-		frmRutTien.getContentPane().add(lblNewLabel);
+		lblNewLabel.setBounds(69, 11, 161, 14);
+		frmThemKhachHang.getContentPane().add(lblNewLabel);
 
 		JLabel lblNewLabel_1 = new JLabel("Khách Hàng:");
 		lblNewLabel_1.setBounds(10, 42, 100, 14);
-		frmRutTien.getContentPane().add(lblNewLabel_1);
+		frmThemKhachHang.getContentPane().add(lblNewLabel_1);
 
 		txtTenKhachHang = new JTextField();
 		txtTenKhachHang.setEditable(false);
 		txtTenKhachHang.setBounds(136, 39, 150, 20);
-		frmRutTien.getContentPane().add(txtTenKhachHang);
+		frmThemKhachHang.getContentPane().add(txtTenKhachHang);
 		txtTenKhachHang.setColumns(10);
 
 		JLabel lblNewLabel_2 = new JLabel("Số CMND:");
 		lblNewLabel_2.setBounds(10, 67, 100, 14);
-		frmRutTien.getContentPane().add(lblNewLabel_2);
+		frmThemKhachHang.getContentPane().add(lblNewLabel_2);
 
 		txtSoCMND = new JTextField();
 		txtSoCMND.setEditable(false);
 		txtSoCMND.setColumns(10);
 		txtSoCMND.setBounds(136, 64, 150, 20);
-		frmRutTien.getContentPane().add(txtSoCMND);
+		frmThemKhachHang.getContentPane().add(txtSoCMND);
 
 		txtSDT = new JTextField();
 		txtSDT.setEditable(false);
 		txtSDT.setColumns(10);
 		txtSDT.setBounds(136, 89, 150, 20);
-		frmRutTien.getContentPane().add(txtSDT);
+		frmThemKhachHang.getContentPane().add(txtSDT);
 
 		JLabel lblNewLabel_2_1 = new JLabel("Số điện thoại:");
 		lblNewLabel_2_1.setBounds(10, 92, 100, 14);
-		frmRutTien.getContentPane().add(lblNewLabel_2_1);
+		frmThemKhachHang.getContentPane().add(lblNewLabel_2_1);
 
-		JLabel lblNewLabel_2_1_1 = new JLabel("Số tiền cần rút");
+		JLabel lblNewLabel_2_1_1 = new JLabel("Số tiền gửi lần đầu:");
 		lblNewLabel_2_1_1.setBounds(10, 116, 100, 14);
-		frmRutTien.getContentPane().add(lblNewLabel_2_1_1);
+		frmThemKhachHang.getContentPane().add(lblNewLabel_2_1_1);
 
 		ftxtSoTien = new JFormattedTextField(NumberFormat.getNumberInstance());
 		ftxtSoTien.setToolTipText("VN\u0110");
 		ftxtSoTien.setBounds(136, 113, 150, 20);
-		frmRutTien.getContentPane().add(ftxtSoTien);
+		frmThemKhachHang.getContentPane().add(ftxtSoTien);
 
-		btnRut = new JButton("Rút");
-		btnRut.addActionListener(new ActionListener() {
+		btnThem = new JButton("Rút");
+		btnThem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				thucHienGuiTien();
 			}
 		});
-		btnRut.setBounds(109, 142, 89, 23);
-		frmRutTien.getContentPane().add(btnRut);
+		btnThem.setBounds(109, 142, 89, 23);
+		frmThemKhachHang.getContentPane().add(btnThem);
 	}
 
 	public void setThongTinKhachHang(KhachHang kh) {
@@ -148,10 +149,10 @@ public class RutTien {
 					rutTien(outputAmount);
 					inBienLai();
 				} else {
-					JOptionPane.showMessageDialog(frmRutTien, "Số tiền còn lại phải lớn hơn " + remainingAmount);
+					JOptionPane.showMessageDialog(frmThemKhachHang, "Số tiền còn lại phải lớn hơn " + remainingAmount);
 				}
 			} else {
-				JOptionPane.showMessageDialog(frmRutTien, "Số tiền rút phải lớn hơn " + minAmount);
+				JOptionPane.showMessageDialog(frmThemKhachHang, "Số tiền rút phải lớn hơn " + minAmount);
 			}
 		}
 	}
@@ -166,9 +167,9 @@ public class RutTien {
 			pstmt.setString(2, kh.getCmnd().toString());
 
 			pstmt.executeUpdate();
-			JOptionPane.showMessageDialog(frmRutTien, "Đã thực hiện rút tiền!");
+			JOptionPane.showMessageDialog(frmThemKhachHang, "Đã thực hiện rút tiền!");
 		} catch (Exception ex) {
-			JOptionPane.showMessageDialog(frmRutTien, ex.getMessage());
+			JOptionPane.showMessageDialog(frmThemKhachHang, ex.getMessage());
 		}
 
 	}
@@ -189,16 +190,16 @@ public class RutTien {
 			myWriter.write("\nNgày giao dịch: " + kh.getTenKhachHang());
 			myWriter.close();
 
-			JOptionPane.showMessageDialog(frmRutTien, "Đã in biên lai!");
+			JOptionPane.showMessageDialog(frmThemKhachHang, "Đã in biên lai!");
 		} catch (IOException e) {
-			JOptionPane.showMessageDialog(frmRutTien, "Đã xảy ra lỗi!");
+			JOptionPane.showMessageDialog(frmThemKhachHang, "Đã xảy ra lỗi!");
 			e.printStackTrace();
 		}
 
 	}
 
 	public JFrame getFrame() {
-		return frmRutTien;
+		return frmThemKhachHang;
 	}
 
 }
