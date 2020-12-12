@@ -22,6 +22,12 @@ public class KhachHang {
 	
 	
 	
+	public KhachHang() {
+		// TODO Auto-generated constructor stub
+	}
+
+
+
 	@Override
 	public String toString() {
 		return "KhachHang [id=" + id + ", tenKhachHang=" + tenKhachHang + ", cmnd=" + cmnd + ", diaChi=" + diaChi

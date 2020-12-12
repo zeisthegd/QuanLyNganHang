@@ -1,5 +1,0 @@
------ GỬI TIỀN -----
-Tên nhân viên thực hiện: Nguyen Nhan Vien
-Tên khách hàng: Thủ Dầu Một
-Số tiền gửi: 123,123,123
-Ngày giao dịch: Thủ Dầu Một

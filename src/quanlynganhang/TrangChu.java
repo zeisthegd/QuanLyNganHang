@@ -310,7 +310,8 @@ public class TrangChu {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
+				ThemKhachHang windowThemKhachHang = new ThemKhachHang();
+				windowThemKhachHang.getFrame().setVisible(true);
 
 			}
 		});

@@ -185,7 +185,7 @@ public class GuiTien {
 			myWriter.write("\nTên nhân viên thực hiện: " + TrangChu.getTenNhanVien());
 			myWriter.write("\nTên khách hàng: " + kh.getTenKhachHang());
 			myWriter.write("\nSố tiền gửi: " + ftxtSoTien.getText().toString());
-			myWriter.write("\nNgày giao dịch: " + kh.getTenKhachHang());
+			myWriter.write("\nNgày giao dịch: " + Database.getCurrentDateTime());
 			myWriter.close();
 			JOptionPane.showMessageDialog(frmGuiTien, "Đã in biên lai!");
 		} catch (IOException e) {

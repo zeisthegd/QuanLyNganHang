@@ -123,7 +123,7 @@ public class RutTien {
 		btnRut = new JButton("Rút");
 		btnRut.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				thucHienGuiTien();
+				thucHienRutTien();
 			}
 		});
 		btnRut.setBounds(109, 142, 89, 23);
@@ -138,7 +138,7 @@ public class RutTien {
 
 	}
 
-	private void thucHienGuiTien() {
+	private void thucHienRutTien() {
 		if (!ftxtSoTien.getText().isEmpty()) {
 			String tienRut = ftxtSoTien.getText().toString().replace(",", "");
 
@@ -186,7 +186,7 @@ public class RutTien {
 			myWriter.write("\nTên nhân viên thực hiện: " + TrangChu.getTenNhanVien());
 			myWriter.write("\nTên khách hàng: " + kh.getTenKhachHang());
 			myWriter.write("\nSố tiền rút: " + ftxtSoTien.getText().toString());
-			myWriter.write("\nNgày giao dịch: " + kh.getTenKhachHang());
+			myWriter.write("\nNgày giao dịch: " + Database.getCurrentDateTime());
 			myWriter.close();
 
 			JOptionPane.showMessageDialog(frmRutTien, "Đã in biên lai!");
