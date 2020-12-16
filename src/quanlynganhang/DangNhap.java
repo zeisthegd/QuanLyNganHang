@@ -133,7 +133,7 @@ public class DangNhap {
 		}
 		catch(Exception ex)
 		{
-			ex.printStackTrace();
+			JOptionPane.showMessageDialog(frmLogin, "Lỗi đăng nhập!");
 		}
 		
 	}

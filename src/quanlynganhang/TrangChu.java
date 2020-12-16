@@ -246,7 +246,7 @@ public class TrangChu {
 				}
 				if ((checkTenKhachHangContains(result.getString(2)) && findBy == 2)
 						|| (checkSoCMNDContains(result.getString(3)) && findBy == 3)
-						|| (checkSoDTContains(result.getString(4)) && findBy == 4))
+						|| (checkSoDTContains(result.getString(5)) && findBy == 5))
 					dataModel.addRow(rowData);
 			}
 		} catch (Exception ex) {
@@ -279,7 +279,6 @@ public class TrangChu {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//hien cua so gui tien
 				if(selectedKhachHang != null)
 				{
 					GuiTien windowGuiTien = new GuiTien();
@@ -323,7 +322,7 @@ public class TrangChu {
 				if(selectedKhachHang != null)
 				{
 					ChuyenTien windowChuyenTien = new ChuyenTien();
-					windowChuyenTien.setThongTinKhachHang(selectedKhachHang);
+					windowChuyenTien.setThongTinNguoiChuyen(selectedKhachHang);
 					windowChuyenTien.getFrame().setVisible(true);
 				}
 				else
@@ -352,7 +351,7 @@ public class TrangChu {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
+				frmTrangChu.dispose();
 
 			}
 		});
@@ -433,7 +432,7 @@ public class TrangChu {
 			@Override
 			public void keyTyped(KeyEvent e) {
 				try {
-					findBy = 4;
+					findBy = 5;
 					if (!(txtFindSDT.getText().length() <= 0)) {
 						findKhachHangVoiDieuKien();
 					} else {

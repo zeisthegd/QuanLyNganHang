@@ -1,0 +1,9 @@
+----- CHUYỂN TIỀN -----
+Tên nhân viên thực hiện: Nguyễn Nhân Viên----- Người chuyển -----
+Tên người chuyển: Lloyd Rudd
+Số CMND: 296223623
+Số tiền chuyển: 1,000,000----- Người nhận -----
+Tên người nhận: Nguyễn Tiến Phong
+Số CMND: 291222789
+Số tiền chuyển: 1,000,000
+Ngày giao dịch: 2020-12-16-16_36_27

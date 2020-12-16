@@ -173,6 +173,7 @@ public class GuiTien {
 		noiDung += "----- GỬI TIỀN -----";
 		noiDung +="\nTên nhân viên thực hiện: " + TrangChu.getTenNhanVien();
 		noiDung +="\nTên khách hàng: " + kh.getTenKhachHang();
+		noiDung += "\nSố CMND: "+ kh.getCmnd();
 		noiDung +="\nSố tiền gửi: " + ftxtSoTien.getText().toString();
 		noiDung +="\nNgày giao dịch: " + Database.getCurrentDateTime();
 		
