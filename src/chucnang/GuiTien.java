@@ -118,7 +118,7 @@ public class GuiTien {
 		ftxtSoTien.setBounds(136, 113, 150, 20);
 		frmGuiTien.getContentPane().add(ftxtSoTien);
 
-		btnGui = new JButton("Gửi");
+		btnGui = new JButton("Gửi Tiền");
 		btnGui.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				thucHienGuiTien();
@@ -155,45 +155,29 @@ public class GuiTien {
 		}
 	}
 
+	
+	
 	private void guiTien(BigDecimal addAmount) {
 		BigDecimal newTien = kh.getTien().add(addAmount);
 		kh.setTien(newTien);
-
-		String query = "update [KhachHang] set Tien = ? where CMND = ?";
-		try (PreparedStatement pstmt = Database.getConnection().prepareStatement(query)) {
-			pstmt.setString(1, kh.getTien().toString());
-			pstmt.setString(2, kh.getCmnd().toString());
-
-			pstmt.executeUpdate();
+		if(Database.updateTien(kh))
 			JOptionPane.showMessageDialog(frmGuiTien, "Đã thực hiện gửi tiền!");
-		} catch (Exception ex) {
-			JOptionPane.showMessageDialog(frmGuiTien, ex.getMessage());
-		}
-
+		else 
+			JOptionPane.showMessageDialog(frmGuiTien, "Lỗi trong quá trình thực hiện gửi tiền!");
 	}
 
 	private void inBienLai() {
-		try {
-			String saveDirectory = System.getProperty("user.dir") + "\\BienLai\\GuiTien";
-			String tenBienLai = kh.getCmnd() + "_GUI-TIEN_" + Database.getCurrentDateTime() + ".txt";
+		String tenBienLai = kh.getCmnd() + "_GUI-TIEN_" + Database.getCurrentDateTime() + ".txt";
+		String noiDung = "";
 
-			File bienLai = new File(saveDirectory, tenBienLai);
-			bienLai.getParentFile().mkdirs();
-			FileWriter myWriter = new FileWriter(bienLai);
-
-			myWriter.write("----- GỬI TIỀN -----");
-			myWriter.write("\nTên nhân viên thực hiện: " + TrangChu.getTenNhanVien());
-			myWriter.write("\nTên khách hàng: " + kh.getTenKhachHang());
-			myWriter.write("\nSố tiền gửi: " + ftxtSoTien.getText().toString());
-			myWriter.write("\nNgày giao dịch: " + Database.getCurrentDateTime());
-			myWriter.close();
-			JOptionPane.showMessageDialog(frmGuiTien, "Đã in biên lai!");
-		} catch (IOException e) {
-			JOptionPane.showMessageDialog(frmGuiTien, "Đã xảy ra lỗi!");
-			e.printStackTrace();
-		}
-
-	}
+		noiDung += "----- GỬI TIỀN -----";
+		noiDung +="\nTên nhân viên thực hiện: " + TrangChu.getTenNhanVien();
+		noiDung +="\nTên khách hàng: " + kh.getTenKhachHang();
+		noiDung +="\nSố tiền gửi: " + ftxtSoTien.getText().toString();
+		noiDung +="\nNgày giao dịch: " + Database.getCurrentDateTime();
+		
+		Database.inBienLai(Database.getGuiTienBienLaiDir(), tenBienLai, noiDung, frmGuiTien);
+}
 
 	public JFrame getFrame() {
 		return frmGuiTien;

@@ -120,7 +120,7 @@ public class RutTien {
 		ftxtSoTien.setBounds(136, 113, 150, 20);
 		frmRutTien.getContentPane().add(ftxtSoTien);
 
-		btnRut = new JButton("Rút");
+		btnRut = new JButton("Rút Tiền");
 		btnRut.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				thucHienRutTien();
@@ -159,42 +159,24 @@ public class RutTien {
 	private void rutTien(BigDecimal subAmount) {
 		BigDecimal newTien = kh.getTien().subtract(subAmount);
 		kh.setTien(newTien);
-
-		String query = "update [KhachHang] set Tien = ? where CMND = ?";
-		try (PreparedStatement pstmt = Database.getConnection().prepareStatement(query)) {
-			pstmt.setString(1, kh.getTien().toString());
-			pstmt.setString(2, kh.getCmnd().toString());
-
-			pstmt.executeUpdate();
+		
+		if(Database.updateTien(kh))
 			JOptionPane.showMessageDialog(frmRutTien, "Đã thực hiện rút tiền!");
-		} catch (Exception ex) {
-			JOptionPane.showMessageDialog(frmRutTien, ex.getMessage());
-		}
-
+		else 
+			JOptionPane.showMessageDialog(frmRutTien, "Lỗi trong quá trình thực hiện rút tiền!");
 	}
 
 	private void inBienLai() {
-		try {
-			String saveDirectory = System.getProperty("user.dir") + "\\BienLai\\RutTien";
 			String tenBienLai = kh.getCmnd() + "_RUT-TIEN_" + Database.getCurrentDateTime() + ".txt";
+			String noiDung = "";
 
-			File bienLai = new File(saveDirectory, tenBienLai);
-			bienLai.getParentFile().mkdirs();
-			FileWriter myWriter = new FileWriter(bienLai);
-
-			myWriter.write("----- RÚT TIỀN -----");
-			myWriter.write("\nTên nhân viên thực hiện: " + TrangChu.getTenNhanVien());
-			myWriter.write("\nTên khách hàng: " + kh.getTenKhachHang());
-			myWriter.write("\nSố tiền rút: " + ftxtSoTien.getText().toString());
-			myWriter.write("\nNgày giao dịch: " + Database.getCurrentDateTime());
-			myWriter.close();
-
-			JOptionPane.showMessageDialog(frmRutTien, "Đã in biên lai!");
-		} catch (IOException e) {
-			JOptionPane.showMessageDialog(frmRutTien, "Đã xảy ra lỗi!");
-			e.printStackTrace();
-		}
-
+			noiDung += "----- RÚT TIỀN -----";
+			noiDung +="\nTên nhân viên thực hiện: " + TrangChu.getTenNhanVien();
+			noiDung +="\nTên khách hàng: " + kh.getTenKhachHang();
+			noiDung +="\nSố tiền rút: " + ftxtSoTien.getText().toString();
+			noiDung +="\nNgày giao dịch: " + Database.getCurrentDateTime();
+			
+			Database.inBienLai(Database.getRutTienBienLaiDir(), tenBienLai, noiDung, frmRutTien);
 	}
 
 	public JFrame getFrame() {

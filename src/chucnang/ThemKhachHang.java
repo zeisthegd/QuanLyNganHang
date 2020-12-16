@@ -120,14 +120,14 @@ public class ThemKhachHang {
 		ftxtSoTien.setBounds(136, 139, 150, 20);
 		frmThemKhachHang.getContentPane().add(ftxtSoTien);
 
-		btnThem = new JButton("Rút");
+		btnThem = new JButton("Thêm Khách Hàng");
 		btnThem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				thucHienThemKhachHang();
 			}
 
 		});
-		btnThem.setBounds(108, 167, 89, 23);
+		btnThem.setBounds(69, 167, 161, 23);
 		frmThemKhachHang.getContentPane().add(btnThem);
 
 		JLabel lblDiaChi = new JLabel("Địa chỉ:");
@@ -146,7 +146,10 @@ public class ThemKhachHang {
 			{
 				taoKhachHangMoi();
 				if(!coTrungLap())
+				{
 					insertKhachHangVaoCSDL();
+					inBienLai();
+				}
 			}
 		}
 	}
@@ -257,29 +260,19 @@ public class ThemKhachHang {
 	}
 
 	private void inBienLai() {
-		try {
-			String saveDirectory = System.getProperty("user.dir") + "\\BienLai\\ThemKhachHang";
 			String tenBienLai = khachHangMoi.getCmnd() + "_THEM-KHACH-HANG_" + Database.getCurrentDateTime() + ".txt";
 
-			File bienLai = new File(saveDirectory, tenBienLai);
-			bienLai.getParentFile().mkdirs();
-			FileWriter myWriter = new FileWriter(bienLai);
-
-			myWriter.write("----- THÊM KHÁCH HÀNG -----");
-			myWriter.write("\nTên nhân viên thực hiện: " + TrangChu.getTenNhanVien());
-			myWriter.write("\nTên khách hàng: " + khachHangMoi.getTenKhachHang());
-			myWriter.write("\nSố CMND: " + khachHangMoi.getCmnd());		
-			myWriter.write("\nSố điện thoại: " + khachHangMoi.getSdt());
-			myWriter.write("\nĐịa chỉ: " + khachHangMoi.getDiaChi());
-			myWriter.write("\nSố tiền gửi lần đầu: " + ftxtSoTien.getText().toString());
-			myWriter.write("\nNgày giao dịch: " + Database.getCurrentDateTime());
-			myWriter.close();
-
-			showMessage("Đã in biên lai!");
-		} catch (IOException e) {
-			showMessage("Đã xảy ra lỗi!");
-			e.printStackTrace();
-		}
+			String noiDung = "";
+			noiDung += "----- THÊM KHÁCH HÀNG -----";
+			noiDung += "\nTên nhân viên thực hiện: " + TrangChu.getTenNhanVien();
+			noiDung += "\nTên khách hàng: " + khachHangMoi.getTenKhachHang();
+			noiDung += "\nSố CMND: " + khachHangMoi.getCmnd();		
+			noiDung += "\nSố điện thoại: " + khachHangMoi.getSdt();
+			noiDung += "\nĐịa chỉ: " + khachHangMoi.getDiaChi();
+			noiDung += "\nSố tiền gửi lần đầu: " + ftxtSoTien.getText().toString();
+			noiDung += "\nNgày giao dịch: " + Database.getCurrentDateTime();
+			
+			Database.inBienLai(Database.getThemKhachHangBienLaiDir(), tenBienLai, noiDung, frmThemKhachHang);
 	}
 
 	private void showMessage(String message) {

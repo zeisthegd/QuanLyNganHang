@@ -23,7 +23,9 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 
 import model.KhachHang;
 import chucnang.*;
@@ -34,6 +36,11 @@ import java.awt.event.KeyEvent;
 import java.math.BigDecimal;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.LineBorder;
+import java.awt.Color;
+import javax.swing.JScrollPane;
+import javax.swing.ScrollPaneConstants;
 
 public class TrangChu {
 
@@ -63,6 +70,11 @@ public class TrangChu {
 	private String findKhachHangQuery = "select * fomr [KhachHang]";
 
 	private String[] columnNames = { "ID", "Tên Khách Hàng", "Số CMND", "Địa chỉ", "Số điện thoại", "Tiền" };
+	
+	int[] columnsWidth = {
+            30, 125, 80, 180, 80, 120
+        };
+	private JScrollPane scrollPane;
 
 	/**
 	 * Launch the application.
@@ -98,47 +110,44 @@ public class TrangChu {
 	private void initialize() {
 		frmTrangChu = new JFrame();
 		frmTrangChu.setTitle("Trang Chủ");
-		frmTrangChu.setBounds(100, 100, 500, 401);
+		frmTrangChu.setBounds(100, 100, 670, 401);
 		frmTrangChu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmTrangChu.getContentPane().setLayout(null);
 
 		JLabel lblTitle = new JLabel("Trang Ch\u1EE7");
 		lblTitle.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTitle.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblTitle.setBounds(127, 0, 250, 30);
+		lblTitle.setBounds(201, 11, 250, 30);
 		frmTrangChu.getContentPane().add(lblTitle);
-
-		table = new JTable();
-		table.setBounds(10, 94, 466, 191);
-		frmTrangChu.getContentPane().add(table);
+		
 
 		btnGuiTien = new JButton("Gửi Tiền");
 		btnGuiTien.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnGuiTien.setBounds(10, 296, 139, 23);
+		btnGuiTien.setBounds(10, 296, 205, 23);
 		frmTrangChu.getContentPane().add(btnGuiTien);
 
 		btnRutTien = new JButton("Rút Tiền");
-		btnRutTien.setBounds(177, 296, 139, 23);
+		btnRutTien.setBounds(226, 296, 205, 23);
 		frmTrangChu.getContentPane().add(btnRutTien);
 
 		btnChuyenTien = new JButton("Chuyển Tiền");
-		btnChuyenTien.setBounds(337, 296, 139, 23);
+		btnChuyenTien.setBounds(441, 296, 205, 23);
 		frmTrangChu.getContentPane().add(btnChuyenTien);
 
 		btnThemKhachHang = new JButton("Thêm Khách Hàng");
-		btnThemKhachHang.setBounds(10, 330, 139, 23);
+		btnThemKhachHang.setBounds(10, 330, 205, 23);
 		frmTrangChu.getContentPane().add(btnThemKhachHang);
 
 		btnRefresh = new JButton("Refresh");
 
-		btnRefresh.setBounds(177, 330, 139, 23);
+		btnRefresh.setBounds(226, 330, 205, 23);
 		frmTrangChu.getContentPane().add(btnRefresh);
 
 		btnThoat = new JButton("Thoát");
-		btnThoat.setBounds(337, 330, 139, 23);
+		btnThoat.setBounds(441, 330, 205, 23);
 		frmTrangChu.getContentPane().add(btnThoat);
 
 		JLabel lblNewLabel = new JLabel("T\u00EAn Nh\u00E2n Vi\u00EAn: ");
@@ -152,21 +161,31 @@ public class TrangChu {
 		txtFindTenKhachHang = new JTextField();
 
 		txtFindTenKhachHang.setToolTipText("T\u00ECm theo T\u00CAN KH\u00C1CH H\u00C0NG");
-		txtFindTenKhachHang.setBounds(10, 63, 150, 20);
+		txtFindTenKhachHang.setBounds(10, 63, 205, 20);
 		frmTrangChu.getContentPane().add(txtFindTenKhachHang);
 		txtFindTenKhachHang.setColumns(10);
 
 		txtFindCMND = new JTextField();
 		txtFindCMND.setToolTipText("T\u00ECm theo S\u1ED1 CMND");
 		txtFindCMND.setColumns(10);
-		txtFindCMND.setBounds(166, 63, 155, 20);
+		txtFindCMND.setBounds(226, 63, 205, 20);
 		frmTrangChu.getContentPane().add(txtFindCMND);
 
 		txtFindSDT = new JTextField();
 		txtFindSDT.setToolTipText("T\u00ECm theo S\u1ED0 \u0110I\u1EC6N THO\u1EA0I");
 		txtFindSDT.setColumns(10);
-		txtFindSDT.setBounds(326, 63, 150, 20);
+		txtFindSDT.setBounds(441, 63, 205, 20);
 		frmTrangChu.getContentPane().add(txtFindSDT);
+		
+		scrollPane = new JScrollPane(table);
+		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		scrollPane.setEnabled(false);
+		scrollPane.setBounds(10, 94, 636, 191);
+		frmTrangChu.getContentPane().add(scrollPane);
+		
+				table = new JTable();
+				scrollPane.setViewportView(table);
+				table.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 	}
 
 	private void loadTatCaKhachHang() {
@@ -188,14 +207,9 @@ public class TrangChu {
 			// -------------------------------------------------
 			ResultSetMetaData mData = result.getMetaData();
 			int colCount = mData.getColumnCount();
-			String[] colNames = new String[colCount];
+			dataModel.setColumnIdentifiers(getColNames(colCount));		
+			setTableColumnWidth();
 			// -------------------------------------------------
-			for (int i = 1; i <= colCount; i++) {
-				colNames[i - 1] = mData.getColumnName(i);
-			}
-			dataModel.setColumnIdentifiers(colNames);
-			// -------------------------------------------------
-			dataModel.addRow(columnNames);
 			while (result.next()) {
 				String[] rowData = new String[colCount];
 				for (int i = 1; i <= colCount; i++) {
@@ -216,17 +230,15 @@ public class TrangChu {
 		try (PreparedStatement pstmt = Database.getConnection().prepareStatement(findKhachHangQuery)) {
 			ResultSet result = null;
 			result = pstmt.executeQuery();
+			
 			// -------------------------------------------------
 			ResultSetMetaData mData = result.getMetaData();
 			int colCount = mData.getColumnCount();
-			String[] colNames = new String[colCount];
+			dataModel.setColumnIdentifiers(getColNames(colCount));
+			setTableColumnWidth();
 			// -------------------------------------------------
-			for (int i = 1; i <= colCount; i++) {
-				colNames[i - 1] = mData.getColumnName(i);
-			}
-			dataModel.setColumnIdentifiers(colNames);
-			// -------------------------------------------------
-			dataModel.addRow(columnNames);
+			
+			
 			while (result.next()) {
 				String[] rowData = new String[colCount];
 				for (int i = 1; i <= colCount; i++) {
@@ -240,6 +252,15 @@ public class TrangChu {
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
+	}
+	
+	private String[] getColNames(int colCount)
+	{
+		String[] colNames = new String[colCount];
+		for (int i = 1; i <= colCount; i++) {
+			colNames[i - 1] = columnNames[i - 1];
+		}
+		return colNames;
 	}
 
 	private void setTatCaButtons() {
@@ -299,7 +320,16 @@ public class TrangChu {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
+				if(selectedKhachHang != null)
+				{
+					ChuyenTien windowChuyenTien = new ChuyenTien();
+					windowChuyenTien.setThongTinKhachHang(selectedKhachHang);
+					windowChuyenTien.getFrame().setVisible(true);
+				}
+				else
+				{
+					JOptionPane.showMessageDialog(frmTrangChu, "Bạn chưa chọn khách hàng cần thực hiện thao tác!");
+				}
 
 			}
 		});
@@ -444,6 +474,22 @@ public class TrangChu {
 		return false;
 	}
 
+	private void setTableColumnWidth()
+	{
+		DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+		centerRenderer.setHorizontalAlignment( JLabel.CENTER );
+		int i = 0;
+		 for (int width : columnsWidth) {
+	            TableColumn column = table.getColumnModel().getColumn(i++);
+	            column.setMinWidth(width);
+	            column.setMaxWidth(width);
+	            column.setPreferredWidth(width);
+	            column.setCellRenderer(centerRenderer);
+	            
+	        }
+		 
+	}
+	
 	public JFrame getFrame() {
 		return frmTrangChu;
 	}
@@ -457,5 +503,4 @@ public class TrangChu {
 	{
 		return tenNhanVien;
 	}
-
 }
