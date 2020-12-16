@@ -3,9 +3,12 @@ package quanlynganhang;
 import model.*;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.math.BigDecimal;
+import java.nio.charset.StandardCharsets;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -78,7 +81,7 @@ public class Database {
 
 			File bienLai = new File(bienLaiDir, tenBienLai);
 			bienLai.getParentFile().mkdirs();
-			FileWriter myWriter = new FileWriter(bienLai);
+			OutputStreamWriter myWriter = new OutputStreamWriter(new FileOutputStream(bienLai), StandardCharsets.UTF_8);
 			myWriter.write(noiDung);
 			myWriter.close();
 			JOptionPane.showMessageDialog(frmThongBao, "Đã in biên lai!");

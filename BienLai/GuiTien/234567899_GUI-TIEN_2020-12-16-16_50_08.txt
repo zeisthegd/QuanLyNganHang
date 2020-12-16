@@ -1,0 +1,6 @@
+----- GỬI TIỀN -----
+Tên nhân viên thực hiện: Nguyễn Nhân Viên
+Tên khách hàng: Thủ Dầu Một
+Số CMND: 234567899
+Số tiền gửi: 12,312,312
+Ngày giao dịch: 2020-12-16-16_50_08
