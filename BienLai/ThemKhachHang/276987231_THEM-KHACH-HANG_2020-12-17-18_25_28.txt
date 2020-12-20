@@ -1,0 +1,8 @@
+----- THÊM KHÁCH HÀNG -----
+Tên nhân viên thực hiện: Nguyễn Nhân Viên
+Tên khách hàng: Amadeus Wolfgang Mozart
+Số CMND: 276987231
+Số điện thoại: 0923437513
+Địa chỉ: 1754 khu W, xã G, tỉnh Z
+Số tiền gửi lần đầu: 568,000,000
+Ngày thêm: 2020-12-17-18_25_28

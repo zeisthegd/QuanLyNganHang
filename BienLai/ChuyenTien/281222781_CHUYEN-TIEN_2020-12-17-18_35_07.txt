@@ -1,0 +1,11 @@
+----- CHUYỂN TIỀN -----
+Tên nhân viên thực hiện: Nguyễn Nhân Viên
+----- Người chuyển -----
+Tên người chuyển: Nguyễn Trần
+Số CMND: 281222781
+Số tiền chuyển: 4,069,159
+----- Người nhận -----
+Tên người nhận: Nguyễn Tiến Phong
+Số CMND: 291222789
+Số tiền nhận: 4,069,159
+Ngày giao dịch: 2020-12-17-18_35_07

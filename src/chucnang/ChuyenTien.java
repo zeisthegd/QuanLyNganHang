@@ -293,14 +293,14 @@ public class ChuyenTien {
 
 		noiDung += "----- CHUYỂN TIỀN -----";
 		noiDung += "\nTên nhân viên thực hiện: " + TrangChu.getTenNhanVien();
-		noiDung += "----- Người chuyển -----";
+		noiDung += "\n----- Người chuyển -----";
 		noiDung += "\nTên người chuyển: " + kh.getTenKhachHang();
 		noiDung += "\nSố CMND: "+ kh.getCmnd();
 		noiDung += "\nSố tiền chuyển: " + ftxtSoTien.getText().toString();
-		noiDung += "----- Người nhận -----";
+		noiDung += "\n----- Người nhận -----";
 		noiDung += "\nTên người nhận: " + nguoiNhan.getTenKhachHang();
 		noiDung += "\nSố CMND: "+ nguoiNhan.getCmnd();
-		noiDung += "\nSố tiền chuyển: " + ftxtSoTien.getText().toString();
+		noiDung += "\nSố tiền nhận: " + ftxtSoTien.getText().toString();
 		noiDung += "\nNgày giao dịch: " + Database.getCurrentDateTime();
 
 		Database.inBienLai(Database.getChuyenTienBienLaiDir(), tenBienLai, noiDung, frmChuyenTien);

@@ -188,7 +188,7 @@ public class ThemKhachHang {
 			showMessage("Số điện thoại là số có hơn 9 chữ số!");
 			return false;
 		}
-		else if(!(Integer.parseInt(ftxtSoTien.getText().toString()) >= 50000))
+		else if(!(Integer.parseInt(ftxtSoTien.getText().toString().replace(",", "")) >= 50000))
 		{
 			showMessage("Số tiền gửi lần đầu phải lớn hơn hoặc bằng 50000!");
 			return false;
@@ -270,7 +270,7 @@ public class ThemKhachHang {
 			noiDung += "\nSố điện thoại: " + khachHangMoi.getSdt();
 			noiDung += "\nĐịa chỉ: " + khachHangMoi.getDiaChi();
 			noiDung += "\nSố tiền gửi lần đầu: " + ftxtSoTien.getText().toString();
-			noiDung += "\nNgày giao dịch: " + Database.getCurrentDateTime();
+			noiDung += "\nNgày thêm: " + Database.getCurrentDateTime();
 			
 			Database.inBienLai(Database.getThemKhachHangBienLaiDir(), tenBienLai, noiDung, frmThemKhachHang);
 	}

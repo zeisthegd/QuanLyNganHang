@@ -1,0 +1,11 @@
+----- CHUYỂN TIỀN -----
+Tên nhân viên thực hiện: Nguyễn Nhân Viên
+----- Người chuyển -----
+Tên người chuyển: Harry Potter
+Số CMND: 291748933
+Số tiền chuyển: 10,000
+----- Người nhận -----
+Tên người nhận: Nguyễn Tiến Phong
+Số CMND: 291222789
+Số tiền nhận: 10,000
+Ngày giao dịch: 2020-12-18-09_35_49

@@ -1,9 +1,0 @@
------ CHUYỂN TIỀN -----
-Tên nhân viên thực hiện: Nguyen Nhan Vien----- Người chuyển -----
-Tên người chuyển: Trần Văn A
-Số CMND: 231874931
-Số tiền chuyển: 1,000,000----- Người nhận -----
-Tên người nhận: Harry Potter
-Số CMND: 291748933
-Số tiền chuyển: 1,000,000
-Ngày giao dịch: 2020-12-16-16_26_05
